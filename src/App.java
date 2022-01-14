@@ -5,6 +5,9 @@ public class App {
         Option option = Option.UNKNOWN;
         boolean cont = true;
 
+//        Contact contactTest = new Contact("Bob Dylan", 12599281177L);
+        ContactList list = new ContactList();
+
         do {
             option = menu.printMenu();
 
@@ -12,6 +15,7 @@ public class App {
                 case VIEW:
                     // view contacts
                     System.out.println("View contact");
+                    list.printAllContacts();
                     break;
                 case ADD:
                     // add a contact
