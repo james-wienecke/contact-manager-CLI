@@ -20,6 +20,7 @@ public class App {
                 case ADD:
                     // add a contact
                     System.out.println("Add contact");
+                    list.addNewContact(menu.addContactMenu());
                     break;
                 case SEARCH:
                     // search contacts

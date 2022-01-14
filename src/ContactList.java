@@ -19,4 +19,8 @@ public class ContactList {
             System.out.println(contact);
         }
     }
+
+    public void addNewContact(String[] contactData) {
+        list.add(new Contact(contactData[0], Long.parseLong(contactData[1])));
+    }
 }

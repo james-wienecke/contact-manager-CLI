@@ -16,4 +16,11 @@ public class CLMenu {
         int response = in.getInt(1, 5, mainMenu);
         return Option.getOptionFromInt(response);
     }
+
+    public String[] addContactMenu() {
+        String newName = in.getString("To enter a new contact, first enter a full name:");
+        String newPhone = in.getString("Now enter a phone number. Only digits please:");
+
+        return new String[]{newName, newPhone};
+    }
 }
