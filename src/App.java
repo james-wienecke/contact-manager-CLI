@@ -39,7 +39,7 @@ public class App {
                     // delete a contact
                     System.out.println("Delete contact");
                     try {
-
+                        list.deleteContact(menu.searchContactMenu());
                     } catch (NullPointerException notFound) {
                         System.out.println("No contacts match your search time.");
                     }

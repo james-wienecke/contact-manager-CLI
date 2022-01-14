@@ -48,4 +48,10 @@ public class ContactList {
         }
         return result;
     }
+
+    public void deleteContact(String nameQuery) {
+        Contact result = searchContacts(nameQuery);
+        list.remove(result);
+        System.out.println("Contact removed.");
+    }
 }
