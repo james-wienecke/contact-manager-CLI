@@ -11,4 +11,8 @@ public class Contact {
     public String toString() {
         return name + " | " + phone;
     }
+
+    public String getName() {
+        return name;
+    }
 }

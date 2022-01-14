@@ -6,8 +6,8 @@ public enum Option {
     EXIT (5, "Exit."),
     UNKNOWN (0, "Invalid option.");
 
-    private int number;
-    private String stringOption;
+    private final int number;
+    private final String stringOption;
 
     Option(int number, String option) {
         this.number = number;
@@ -31,5 +31,13 @@ public enum Option {
             default:
                 return Option.UNKNOWN;
         }
+    }
+
+    public String getStringOptionPrompt() {
+        return this.stringOption;
+    }
+
+    public int getNumber() {
+        return number;
     }
 }

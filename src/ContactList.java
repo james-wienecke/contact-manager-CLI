@@ -19,4 +19,39 @@ public class ContactList {
             System.out.println(contact);
         }
     }
+
+    public void addNewContact(String[] contactData) throws NumberFormatException {
+        list.add(new Contact(contactData[0], Long.parseLong(contactData[1])));
+    }
+
+    public void searchAndPrintContact(String nameQuery) {
+        boolean found = false;
+        for (Contact contact : list) {
+            if (contact.getName().equalsIgnoreCase(nameQuery)) {
+                found = true;
+                System.out.println(contact);
+            }
+        }
+        if (!found) {
+            throw new NullPointerException();
+        }
+    }
+
+    private Contact searchContacts(String nameQuery) {
+        Contact result = null;
+        boolean found = false;
+        for (Contact contact : list) {
+            if (contact.getName().equalsIgnoreCase(nameQuery)) {
+                found = true;
+                result = contact;
+            }
+        }
+        return result;
+    }
+
+    public void deleteContact(String nameQuery) {
+        Contact result = searchContacts(nameQuery);
+        list.remove(result);
+        System.out.println("Contact removed.");
+    }
 }
