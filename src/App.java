@@ -1,10 +1,47 @@
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+
 public class App {
 
     public static void main(String[] args) {
         CLMenu menu = new CLMenu();
         ContactList list = new ContactList();
 
-        runCommandLine(menu, list);
+        Path dataDir = Paths.get("data");
+        Path dataFile = Paths.get("data", "contacts.txt");
+
+        try {
+            if (Files.notExists(dataDir)) {
+                Files.createDirectories(dataDir);
+            }
+            if (!Files.exists(dataFile)) {
+                Files.createFile(dataFile);
+            }
+        } catch(IOException iox) {
+            iox.printStackTrace();
+        }
+
+        try {
+            List<Contact> contactsList = new ArrayList<Contact>();
+            contactsList.add(new Contact("james w", 2122445));
+
+//            System.out.println(contactsList.get(0));
+
+
+            List<String> fileData = Files.readAllLines(dataFile);
+            System.out.println(fileData);
+        } catch(IOException iox) {
+            iox.printStackTrace();
+        }
+
+
+
+
+//        runCommandLine(menu, list);
     }
 
     public static void runCommandLine(CLMenu menu, ContactList list) {
