@@ -24,7 +24,7 @@ public class ContactList {
         list.add(new Contact(contactData[0], Long.parseLong(contactData[1])));
     }
 
-    public void searchContacts(String nameQuery) {
+    public void searchAndPrintContact(String nameQuery) {
         boolean found = false;
         for (Contact contact : list) {
             if (contact.getName().equalsIgnoreCase(nameQuery)) {
@@ -33,7 +33,19 @@ public class ContactList {
             }
         }
         if (!found) {
-            System.out.println("No contacts match your search term.");
+            throw new NullPointerException();
         }
+    }
+
+    private Contact searchContacts(String nameQuery) {
+        Contact result = null;
+        boolean found = false;
+        for (Contact contact : list) {
+            if (contact.getName().equalsIgnoreCase(nameQuery)) {
+                found = true;
+                result = contact;
+            }
+        }
+        return result;
     }
 }

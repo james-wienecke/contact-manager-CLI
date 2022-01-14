@@ -59,7 +59,7 @@ public class Input {
         try {
             input = Integer.valueOf(getString());
         } catch (NumberFormatException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
             input = getInt();
         }
         return input;
@@ -70,7 +70,7 @@ public class Input {
         try {
             input = Integer.valueOf(getString(prompt));
         } catch (NumberFormatException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
             input = getInt(prompt);
         }
         return input;
@@ -103,7 +103,7 @@ public class Input {
         try {
             input = Double.valueOf(getString());
         } catch (NumberFormatException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
             input = getDouble();
         }
         return input;
@@ -114,7 +114,7 @@ public class Input {
         try {
             input = Double.valueOf(getString(prompt));
         } catch (NumberFormatException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
             input = getDouble(prompt);
         }
         return input;
@@ -157,7 +157,7 @@ public class Input {
         try {
             input = Integer.valueOf(getString(), 2);
         } catch (NumberFormatException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
             input = getBinary();
         }
         return input;
@@ -168,7 +168,7 @@ public class Input {
         try {
             input = Integer.valueOf(getString(prompt), 2);
         } catch (NumberFormatException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
             input = getBinary(prompt);
         }
         return input;
@@ -201,7 +201,7 @@ public class Input {
         try {
             input = Integer.valueOf(getString(), 16);
         } catch (NumberFormatException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
             input = getHex();
         }
         return input;
@@ -212,7 +212,7 @@ public class Input {
         try {
             input = Integer.valueOf(getString(prompt), 16);
         } catch (NumberFormatException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
             input = getInt(prompt);
         }
         return input;

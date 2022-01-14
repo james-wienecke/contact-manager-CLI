@@ -29,11 +29,20 @@ public class App {
                 case SEARCH:
                     // search contacts
                     System.out.println("Search contact");
-                     list.searchContacts(menu.searchContactMenu());
+                    try {
+                        list.searchAndPrintContact(menu.searchContactMenu());
+                    } catch (NullPointerException notFound) {
+                        System.out.println("No contacts match your search term.");
+                    }
                     break;
                 case DELETE:
                     // delete a contact
                     System.out.println("Delete contact");
+                    try {
+
+                    } catch (NullPointerException notFound) {
+                        System.out.println("No contacts match your search time.");
+                    }
                     break;
                 case EXIT:
                     // exit program
