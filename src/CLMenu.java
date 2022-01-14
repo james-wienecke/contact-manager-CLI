@@ -24,4 +24,8 @@ public class CLMenu {
 
         return new String[]{newName, newPhone};
     }
+
+    public String searchContactMenu() {
+        return in.getString("Enter the name to search for:");
+    }
 }

@@ -23,4 +23,17 @@ public class ContactList {
     public void addNewContact(String[] contactData) throws NumberFormatException {
         list.add(new Contact(contactData[0], Long.parseLong(contactData[1])));
     }
+
+    public void searchContacts(String nameQuery) {
+        boolean found = false;
+        for (Contact contact : list) {
+            if (contact.getName().equalsIgnoreCase(nameQuery)) {
+                found = true;
+                System.out.println(contact);
+            }
+        }
+        if (!found) {
+            System.out.println("No contacts match your search term.");
+        }
+    }
 }

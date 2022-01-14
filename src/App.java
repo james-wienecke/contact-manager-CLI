@@ -29,7 +29,7 @@ public class App {
                 case SEARCH:
                     // search contacts
                     System.out.println("Search contact");
-                    // list.searchContacts(menu.searchContactMenu());
+                     list.searchContacts(menu.searchContactMenu());
                     break;
                 case DELETE:
                     // delete a contact
