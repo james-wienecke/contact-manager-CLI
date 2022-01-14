@@ -20,7 +20,7 @@ public class ContactList {
         }
     }
 
-    public void addNewContact(String[] contactData) {
+    public void addNewContact(String[] contactData) throws NumberFormatException {
         list.add(new Contact(contactData[0], Long.parseLong(contactData[1])));
     }
 }

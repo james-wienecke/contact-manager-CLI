@@ -5,15 +5,16 @@ public class CLMenu {
         in = new Input();
     }
 
-    Option printMenu() {
-        String mainMenu = "1. View contacts.\n" +
-                "2. Add a new contact.\n" +
-                "3. Search a contact by name.\n" +
-                "4. Delete an existing contact.\n" +
-                "5. Exit.\n" +
-                "Enter an option (1, 2, 3, 4 or 5):";
-
-        int response = in.getInt(1, 5, mainMenu);
+    Option mainMenu() {
+        // we look through the Options and print their corresponding prompts
+        for (Option option : Option.values()) {
+            if (option.getNumber() != 0) {
+                System.out.printf("(%d) %s%n", option.getNumber(), option.getStringOptionPrompt());
+            }
+        }
+        // take user input in the allowed range of Options
+        int response = in.getInt(1, 5, "Enter an option number:");
+        // return the corresponding option
         return Option.getOptionFromInt(response);
     }
 

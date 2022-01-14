@@ -2,15 +2,15 @@ public class App {
 
     public static void main(String[] args) {
         CLMenu menu = new CLMenu();
-        Option option = Option.UNKNOWN;
-        boolean cont = true;
-
-//        Contact contactTest = new Contact("Bob Dylan", 12599281177L);
         ContactList list = new ContactList();
 
-        do {
-            option = menu.printMenu();
+        runCommandLine(menu, list);
+    }
 
+    public static void runCommandLine(CLMenu menu, ContactList list) {
+        Option option = Option.UNKNOWN;
+        do {
+            option = menu.mainMenu();
             switch (option) {
                 case VIEW:
                     // view contacts
@@ -20,7 +20,11 @@ public class App {
                 case ADD:
                     // add a contact
                     System.out.println("Add contact");
-                    list.addNewContact(menu.addContactMenu());
+                    try {
+                        list.addNewContact(menu.addContactMenu());
+                    } catch (NumberFormatException numErr) {
+                        System.out.println("Invalid phone number. Try again.");
+                    }
                     break;
                 case SEARCH:
                     // search contacts
@@ -34,9 +38,8 @@ public class App {
                 case EXIT:
                     // exit program
                     System.out.println("Exiting...");
-                    cont = false;
                     break;
             }
-        } while (cont);
+        } while (option != Option.EXIT);
     }
 }
