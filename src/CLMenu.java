@@ -12,6 +12,11 @@ public class CLMenu {
                 "4. Delete an existing contact.\n" +
                 "5. Exit.\n" +
                 "Enter an option (1, 2, 3, 4 or 5):";
-        System.out.println(mainMenu);
+
+        String userResponse = in.getString(mainMenu);
+
+
+
+
     }
 }
