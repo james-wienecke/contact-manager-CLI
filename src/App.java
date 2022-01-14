@@ -11,37 +11,7 @@ public class App {
         CLMenu menu = new CLMenu();
         ContactList list = new ContactList();
 
-        Path dataDir = Paths.get("data");
-        Path dataFile = Paths.get("data", "contacts.txt");
-
-        try {
-            if (Files.notExists(dataDir)) {
-                Files.createDirectories(dataDir);
-            }
-            if (!Files.exists(dataFile)) {
-                Files.createFile(dataFile);
-            }
-        } catch(IOException iox) {
-            iox.printStackTrace();
-        }
-
-        try {
-            List<Contact> contactsList = new ArrayList<Contact>();
-            contactsList.add(new Contact("james w", 2122445));
-
-//            System.out.println(contactsList.get(0));
-
-
-            List<String> fileData = Files.readAllLines(dataFile);
-            System.out.println(fileData);
-        } catch(IOException iox) {
-            iox.printStackTrace();
-        }
-
-
-
-
-//        runCommandLine(menu, list);
+        runCommandLine(menu, list);
     }
 
     public static void runCommandLine(CLMenu menu, ContactList list) {
