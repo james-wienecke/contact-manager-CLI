@@ -15,4 +15,12 @@ public class Contact {
     public String getName() {
         return name;
     }
+
+    public long getPhone() {
+        return phone;
+    }
+
+    public String formatForStorage() {
+        return String.format("%s,%s", name, phone);
+    }
 }
