@@ -8,15 +8,19 @@ import java.util.List;
 
 public class ContactList {
     private ArrayList<Contact> list;
+    private Path dataDir;
+    private Path dataFile;
+
     ContactList() {
         this.list = new ArrayList<>();
+
+        // load contacts from file
+        dataDir = Paths.get("data");
+        dataFile = Paths.get("data", "contacts.txt");
         readContactsFromFile();
     }
 
     public void readContactsFromFile() {
-        Path dataDir = Paths.get("data");
-        Path dataFile = Paths.get("data", "contacts.txt");
-
         try {
             if (Files.notExists(dataDir)) {
                 Files.createDirectories(dataDir);
@@ -91,5 +95,17 @@ public class ContactList {
             String[] contactData = line.split(",");
             list.add(new Contact(contactData[0], Long.parseLong(contactData[1])));
         });
+    }
+
+    public void saveContactsToFile() {
+        ArrayList<String> formattedList = new ArrayList<>();
+
+        list.forEach(contact -> formattedList.add(contact.formatForStorage()));
+
+        try {
+            Files.write(dataFile, formattedList);
+        } catch (IOException iox) {
+            System.out.println("Failed to write contact list to storage.");
+        }
     }
 }
