@@ -1,13 +1,21 @@
 public class App {
 
     public static void main(String[] args) {
-        CLMenu menu = new CLMenu();
+        // we initialize the contact list here so it sets itself up before
+        // we hand control over to user input
         ContactList list = new ContactList();
 
-        runCommandLine(menu, list);
+        // we open up the command line main menu
+        runCommandLine(list);
     }
 
-    public static void runCommandLine(CLMenu menu, ContactList list) {
+    /** Initializes a command line interface and waits to manipulate the ContactList according
+     * to Option enum values returned from it.
+     *
+     * @param list
+     */
+    public static void runCommandLine(ContactList list) {
+        CLMenu menu = new CLMenu();
         Option option = Option.UNKNOWN;
         do {
             option = menu.mainMenu();
@@ -47,6 +55,7 @@ public class App {
                 case EXIT:
                     // exit program
                     System.out.println("Exiting...");
+                    list.saveContactsToFile();
                     break;
             }
         } while (option != Option.EXIT);
