@@ -30,7 +30,7 @@ public class App {
                     System.out.println("Add contact");
                     try {
                         list.addNewContact(menu.addContactMenu());
-                        System.out.println("You Successfully added a contact");
+                        System.out.println("You successfully added a contact.");
                     } catch (NumberFormatException numErr) {
                         System.out.println("Invalid phone number. Try again.");
                     }
@@ -38,20 +38,12 @@ public class App {
                 case SEARCH:
                     // search contacts
                     System.out.println("Search contact");
-                    try {
-                        list.searchAndPrintContact(menu.searchContactMenu());
-                    } catch (NullPointerException notFound) {
-                        System.out.println("No contacts match your search term.");
-                    }
+                    list.searchAndPrintContact(menu.searchContactMenu());
                     break;
                 case DELETE:
                     // delete a contact
                     System.out.println("Delete contact");
-                    try {
-                        list.deleteContact(menu.searchContactMenu());
-                    } catch (NullPointerException notFound) {
-                        System.out.println("No contacts match your search time.");
-                    }
+                    list.deleteContact(menu.searchContactMenu());
                     break;
                 case EXIT:
                     // exit program
