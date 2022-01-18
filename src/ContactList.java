@@ -18,6 +18,22 @@ public class ContactList {
       list.add(contact);
    }
 
-    public void searchAndPrintContact(String searchContactMenu) {
-    }
+   public void searchAndPrintContact(String query) {
+      try {
+         Contact contact = searchContactByName(query);
+         System.out.println(contact);
+      } catch (NullPointerException npe) {
+         System.out.println("There is no contact in this list with the name " + query);
+      }
+   }
+
+   public Contact searchContactByName(String nameSearch) {
+      Contact found = null;
+      for (Contact contact : list) {
+         if (contact.getName().equalsIgnoreCase(nameSearch)) {
+            found = contact;
+         }
+      }
+      return found;
+   }
 }
