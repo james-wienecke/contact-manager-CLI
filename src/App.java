@@ -30,6 +30,7 @@ public class App {
                     System.out.println("Add contact");
                     try {
                         list.addNewContact(menu.addContactMenu());
+                        System.out.println("You Successfully added a contact");
                     } catch (NumberFormatException numErr) {
                         System.out.println("Invalid phone number. Try again.");
                     }
