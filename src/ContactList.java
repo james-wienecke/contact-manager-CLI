@@ -12,4 +12,9 @@ public class ContactList {
          System.out.println(contact.toString());
       }
    }
+
+   public void addNewContact(String[] newContact) {
+      Contact contact = new Contact(newContact[0], Long.parseLong(newContact[1]));
+      list.add(contact);
+   }
 }
