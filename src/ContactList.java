@@ -36,4 +36,13 @@ public class ContactList {
       }
       return found;
    }
+
+   public void deleteContact(String query) {
+      try {
+         Contact contact = searchContactByName(query);
+         list.remove(contact);
+      } catch (NullPointerException npe) {
+         System.out.println("There is no contact by the name of " + query);
+      }
+   }
 }
