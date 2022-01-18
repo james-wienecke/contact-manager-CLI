@@ -17,4 +17,7 @@ public class ContactList {
       Contact contact = new Contact(newContact[0], Long.parseLong(newContact[1]));
       list.add(contact);
    }
+
+    public void searchAndPrintContact(String searchContactMenu) {
+    }
 }
