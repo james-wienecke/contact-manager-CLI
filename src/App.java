@@ -56,7 +56,7 @@ public class App {
                 case EXIT:
                     // exit program
                     System.out.println("Exiting...");
-                    list.saveContactsToFile();
+//                    list.saveContactsToFile();
                     break;
             }
         } while (option != Option.EXIT);

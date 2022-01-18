@@ -1,10 +1,46 @@
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class ContactList {
    ArrayList<Contact> list;
+   Path dataDir;
+   Path dataFile;
 
    public ContactList() {
       this.list = new ArrayList<>();
+
+      loadContactsFromFile();
+   }
+
+   private void loadContactsFromFile() {
+      try {
+         dataDir = Paths.get("data");
+         dataFile = Paths.get("data", "contacts.txt");
+
+         if (Files.notExists(dataDir)) {
+            Files.createDirectories(dataDir);
+         }
+
+         if (!Files.exists(dataFile)) {
+            Files.createFile(dataFile);
+         }
+
+         List<String> fileList = Files.readAllLines(dataFile);
+         loadContacts(fileList);
+      } catch (IOException iox) {
+         iox.printStackTrace();
+      }
+   }
+
+   private void loadContacts(List<String> fileList) {
+      for (String line : fileList) {
+         addNewContact(line.split(","));
+      }
    }
 
    public void printAllContacts() {
@@ -45,4 +81,6 @@ public class ContactList {
          System.out.println("There is no contact by the name of " + query);
       }
    }
+
+
 }
