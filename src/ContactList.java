@@ -31,15 +31,23 @@ public class ContactList {
          }
 
          List<String> fileList = Files.readAllLines(dataFile);
-         loadContacts(fileList);
+         for (String line : fileList) {
+            addNewContact(line.split(","));
+         }
       } catch (IOException iox) {
          iox.printStackTrace();
       }
    }
 
-   private void loadContacts(List<String> fileList) {
-      for (String line : fileList) {
-         addNewContact(line.split(","));
+   public void saveContactsToFile() {
+      List<String> writeBuffer = new ArrayList<>();
+      for (Contact contact : list) {
+         writeBuffer.add(contact.formatForStorage());
+      }
+      try {
+         Files.write(dataFile, writeBuffer);
+      } catch (IOException iox) {
+         iox.printStackTrace();
       }
    }
 
@@ -81,6 +89,4 @@ public class ContactList {
          System.out.println("There is no contact by the name of " + query);
       }
    }
-
-
 }
