@@ -30,7 +30,6 @@ public class CLMenu {
         return in.getString("Enter the name to search for:");
     }
 
-
     public boolean configFirstBeforeLastName() {
         if (in.yesNo("Do you want to swap whether names are formatted firstname lastname or lastname firstname?")) {
             System.out.println("Swapping order...");
@@ -40,12 +39,11 @@ public class CLMenu {
         }
     }
 
-
     public int configPhoneNumberFormat() {
         String formatPrompt = "What format would you like to change phone number display to? Default is E.164.\n" +
                 "0: E.164\n" +
                 "1: US style\n" +
-                "2: Common international style" +
+                "2: Common international style\n" +
                 "3: UK style";
         return in.getInt(0, 3, formatPrompt);
     }
