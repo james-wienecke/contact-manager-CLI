@@ -10,8 +10,14 @@ public class ContactList {
    Path dataDir;
    Path dataFile;
 
+   // user preferences
+   int phoneNumberFormat;
+   boolean firstBeforeLast;
+
    public ContactList() {
       this.list = new ArrayList<>();
+      this.phoneNumberFormat = 0;
+      this.firstBeforeLast = true;
 
       loadContactsFromFile();
    }
@@ -52,7 +58,7 @@ public class ContactList {
 
    public void printAllContacts() {
       for(Contact contact:list){
-         System.out.println(contact.toString());
+         System.out.println(contact.formatString(phoneNumberFormat, firstBeforeLast));
       }
    }
 

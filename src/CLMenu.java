@@ -13,7 +13,7 @@ public class CLMenu {
             }
         }
         // take user input in the allowed range of Options
-        int response = in.getInt(1, 5, "Enter an option number:");
+        int response = in.getInt(1, 6, "Enter an option number:");
         // return the corresponding Option
         return Option.getOptionFromInt(response);
     }

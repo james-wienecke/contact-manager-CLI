@@ -12,6 +12,14 @@ public class Contact {
         return getName() + " | " + getPhoneFormatted(0);
     }
 
+    public String formatString(int phoneNumberFormat, boolean firstBeforeLast) {
+        if (firstBeforeLast) {
+            return String.format("%s %s | %s", name.getFirst(), name.getLast(), getPhoneFormatted(phoneNumberFormat));
+        } else {
+            return String.format("%s %s | %s", name.getLast(), name.getFirst(), getPhoneFormatted(phoneNumberFormat));
+        }
+    }
+
     public String getName() {
         return name.getFullName();
     }

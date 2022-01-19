@@ -3,7 +3,8 @@ public enum Option {
     ADD (2, "Add a new contact."),
     SEARCH (3, "Search a contact by name."),
     DELETE (4, "Delete an existing contact."),
-    EXIT (5, "Exit."),
+    CONFIG (5, "Edit preferences"),
+    EXIT (6, "Exit."),
     UNKNOWN (0, "Invalid option.");
 
     private final int number;
