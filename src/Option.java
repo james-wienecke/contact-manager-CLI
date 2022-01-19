@@ -28,6 +28,8 @@ public enum Option {
             case 4:
                 return Option.DELETE;
             case 5:
+                return Option.CONFIG;
+            case 6:
                 return Option.EXIT;
             default:
                 return Option.UNKNOWN;

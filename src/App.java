@@ -45,6 +45,11 @@ public class App {
                     System.out.println("Delete contact");
                     list.deleteContact(menu.searchContactMenu());
                     break;
+                case CONFIG:
+                    System.out.println("Edit preferences");
+                    list.setFirstBeforeLast(menu.configFirstBeforeLastName());
+                    list.setPhoneNumberFormat(menu.configPhoneNumberFormat());
+                    System.out.println("Preferences changed.");
                 case EXIT:
                     // exit program
                     System.out.println("Exiting...");

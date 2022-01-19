@@ -94,4 +94,12 @@ public class ContactList {
          System.out.println("There is no contact by the name of " + query);
       }
    }
+
+   public void setPhoneNumberFormat(int preference) {
+      phoneNumberFormat = preference;
+   }
+
+   public void setFirstBeforeLast(boolean preference) {
+      firstBeforeLast = (preference != firstBeforeLast);
+   }
 }

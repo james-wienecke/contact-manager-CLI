@@ -133,10 +133,10 @@ class Phone {
             case US:
                 if (country.equalsIgnoreCase("001")) {
                     // (111)222-3333
-                    return String.format("(%s) %s-%s", area, number.substring(0, 3), number.substring(3));
+                    return String.format("(%s)%s-%s", area, number.substring(0, 3), number.substring(3));
                 } else {
-                    // +00 (111)222-3333
-                    return String.format("+%s (%s)%s-%s", country.substring(1), area, number.substring(0, 3), number.substring(3));
+                    // +00(111)222-3333
+                    return String.format("+%s(%s)%s-%s", country.substring(1), area, number.substring(0, 3), number.substring(3));
                 }
             case INT:
                 // +00 111.222.3333
