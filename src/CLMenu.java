@@ -20,7 +20,7 @@ public class CLMenu {
 
     public String[] addContactMenu() {
         String newName = in.getString("To enter a new contact, first enter a full name:");
-        String newPhone = in.getString("Now enter a phone number. Only digits please:");
+        String newPhone = in.getString("Now enter a phone number. Note: if no country code is provided it will be assumed to be US (01). Only digits please:");
 
         return new String[]{newName, newPhone};
     }
