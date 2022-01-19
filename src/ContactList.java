@@ -69,12 +69,13 @@ public class ContactList {
    }
 
    private void printContactHeader() {
-      System.out.printf("%-24s | %-18s |%n", "Name", "Phone");
-      System.out.println("----------------------------------------------|");
+      System.out.println("┌──────────────────────────┬────────────────────┐");
+      System.out.printf("│ %-24s │ %-18s │%n", "Name", "Phone");
+      System.out.println("├──────────────────────────┼────────────────────┤");
    }
 
    private void printContactFooter() {
-      System.out.println("-----------------------------------------------");
+      System.out.println("└──────────────────────────┴────────────────────┘");
    }
 
    public void addNewContact(String[] newContact) {

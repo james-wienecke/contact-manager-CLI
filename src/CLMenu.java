@@ -2,16 +2,24 @@ public class CLMenu {
     private Input in;
 
     CLMenu() {
-        in = new Input();
+        this(new Input());
+    }
+
+    CLMenu(Input in) {
+        this.in = in;
     }
 
     Option mainMenu() {
         // we look through the Options and print their corresponding prompts
+        System.out.println("┌───────────────────────────────────────────────┐");
+        System.out.printf("│ %-46s│%n", "Main Menu");
         for (Option option : Option.values()) {
             if (option.getNumber() != 0) {
-                System.out.printf("(%d) %s%n", option.getNumber(), option.getStringOptionPrompt());
+                System.out.printf("│ (%d) %-42s│%n", option.getNumber(), option.getStringOptionPrompt());
             }
         }
+        System.out.println("└───────────────────────────────────────────────┘");
+
         // take user input in the allowed range of Options
         int response = in.getInt(1, 6, "Enter an option number:");
         // return the corresponding Option

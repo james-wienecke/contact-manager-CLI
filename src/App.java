@@ -15,7 +15,8 @@ public class App {
      * @param list
      */
     public static void runCommandLine(ContactList list) {
-        CLMenu menu = new CLMenu();
+        Input in = new Input();
+        CLMenu menu = new CLMenu(in);
         Option option = Option.UNKNOWN;
         do {
             option = menu.mainMenu();
@@ -56,6 +57,7 @@ public class App {
                     list.saveContactsToFile();
                     break;
             }
+            if (option != Option.EXIT) in.waitForAnyLine("Press enter or return to go back to menu...");
         } while (option != Option.EXIT);
     }
 }

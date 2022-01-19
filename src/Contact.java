@@ -1,3 +1,5 @@
+import java.util.Locale;
+
 public class Contact {
     private Name name;
     private Phone phone;
@@ -13,7 +15,7 @@ public class Contact {
     }
 
     public String formatString(int phoneNumberFormat, boolean firstBeforeLast) {
-        return String.format("%-24s | %-18s |", name.getFullName(firstBeforeLast), getPhoneFormatted(phoneNumberFormat));
+        return String.format("│ %-24s │ %-18s │", name.getFullName(firstBeforeLast), getPhoneFormatted(phoneNumberFormat));
     }
 
     public String getName() {
@@ -39,8 +41,8 @@ class Name {
 
     public Name(String name) throws ArrayIndexOutOfBoundsException {
         String[] names = name.split(" ");
-        this.first = names[0];
-        this.last = names[1];
+        this.first = names[0].substring(0, 1).toUpperCase(Locale.ROOT) + names[0].substring(1);
+        this.last = names[1].substring(0, 1).toUpperCase(Locale.ROOT) + names[0].substring(1);
     }
 
     public Name(String first, String last) {
