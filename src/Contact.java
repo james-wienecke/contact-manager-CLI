@@ -62,14 +62,51 @@ class Name {
 }
 
 class Phone {
-    String number;
+    private String country;
+    private String area;
+    private String number;
 
-    public Phone(String number) {
-        this.number = number;
+    private static final int E164 = 0;
+    private static final int US = 1;
+    private static final int INT = 2;
+
+    public Phone(String num) throws Exception {
+        if (num.length() == 10) {
+            country = "1";
+            area = num.substring(0, 2);
+            number = num.substring(3);
+        } else if (num.length() >= 11){
+            country = num.substring(0, 2);
+            area = num.substring(3, 5);
+            number = num.substring(6);
+        } else {
+            throw new E();
+        }
     }
 
     public String getNumber() {
-        return number;
+        return getNumberFormatted();
+    }
+
+    public String getNumberFormatted() {
+        return getNumberFormatted(0);
+    }
+
+    public String getNumberFormatted(int format) {
+        switch (format) {
+            case E164:
+                return String.format("+%s%s%s", country, area, number);
+            case US:
+                if (country.equalsIgnoreCase("1")) {
+                    return String.format("(%s) %s-%s", area, number.substring(0, 2), number.substring(3));
+                } else {
+                    return String.format("%s (%s) %s-%s", country, area, number.substring(0, 2), number.substring(3));
+                }
+            case INT:
+                return String.format("%s-%s-%s-%s", country, area, number.substring(0, 2), number.substring(3));
+            default:
+                return String.format("%s%s%s", country, area, number);
+        }
     }
 
     public void setNumber(String number) {
