@@ -1,10 +1,10 @@
 public class Contact {
     private Name name;
-    private long phone;
+    private Phone phone;
 
-    Contact(String name, long phone) {
+    Contact(String name, String phone) {
         this.name = new Name(name);
-        this.phone = phone;
+        this.phone = new Phone(phone);
     }
 
     @Override
@@ -16,8 +16,8 @@ public class Contact {
         return name.getFullName();
     }
 
-    public long getPhone() {
-        return phone;
+    public String getPhone() {
+        return phone.getNumber();
     }
 
     // converts the contact into a String formatted to look like "name,phonenumber"
@@ -58,5 +58,21 @@ class Name {
 
     public String getFullName() {
         return String.format("%s %s", first, last);
+    }
+}
+
+class Phone {
+    String number;
+
+    public Phone(String number) {
+        this.number = number;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
     }
 }

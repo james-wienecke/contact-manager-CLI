@@ -57,7 +57,7 @@ public class ContactList {
    }
 
    public void addNewContact(String[] newContact) {
-      Contact contact = new Contact(newContact[0], Long.parseLong(newContact[1]));
+      Contact contact = new Contact(newContact[0], newContact[1]);
       list.add(contact);
    }
 
