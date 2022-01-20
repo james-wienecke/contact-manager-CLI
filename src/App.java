@@ -15,7 +15,8 @@ public class App {
      * @param list
      */
     public static void runCommandLine(ContactList list) {
-        CLMenu menu = new CLMenu();
+        Input in = new Input();
+        CLMenu menu = new CLMenu(in);
         Option option = Option.UNKNOWN;
         do {
             option = menu.mainMenu();
@@ -45,12 +46,19 @@ public class App {
                     System.out.println("Delete contact");
                     list.deleteContact(menu.searchContactMenu());
                     break;
+                case CONFIG:
+                    System.out.println("Edit preferences");
+                    list.setFirstBeforeLast(menu.configFirstBeforeLastName());
+                    list.setPhoneNumberFormat(menu.configPhoneNumberFormat());
+                    System.out.println("Preferences changed.");
+                    break;
                 case EXIT:
                     // exit program
                     System.out.println("Exiting...");
                     list.saveContactsToFile();
                     break;
             }
+            if (option != Option.EXIT) in.waitForAnyLine("Press enter or return to go back to menu...");
         } while (option != Option.EXIT);
     }
 }

@@ -10,8 +10,14 @@ public class ContactList {
    Path dataDir;
    Path dataFile;
 
+   // user preferences
+   int phoneNumberFormat;
+   boolean firstBeforeLast;
+
    public ContactList() {
       this.list = new ArrayList<>();
+      this.phoneNumberFormat = 0;
+      this.firstBeforeLast = true;
 
       loadContactsFromFile();
    }
@@ -51,20 +57,38 @@ public class ContactList {
    }
 
    public void printAllContacts() {
+      printContactHeader();
       for(Contact contact:list){
-         System.out.println(contact.toString());
+         printContact(contact);
       }
+      printContactFooter();
+   }
+
+   private void printContact(Contact contact) {
+      System.out.println(contact.formatString(phoneNumberFormat, firstBeforeLast));
+   }
+
+   private void printContactHeader() {
+      System.out.println("┌──────────────────────────┬────────────────────┐");
+      System.out.printf("│ %-24s │ %-18s │%n", "Name", "Phone");
+      System.out.println("├──────────────────────────┼────────────────────┤");
+   }
+
+   private void printContactFooter() {
+      System.out.println("└──────────────────────────┴────────────────────┘");
    }
 
    public void addNewContact(String[] newContact) {
-      Contact contact = new Contact(newContact[0], Long.parseLong(newContact[1]));
+      Contact contact = new Contact(newContact[0], newContact[1]);
       list.add(contact);
    }
 
    public void searchAndPrintContact(String query) {
       try {
          Contact contact = searchContactByName(query);
-         System.out.println(contact);
+         printContactHeader();
+         printContact(contact);
+         printContactFooter();
       } catch (NullPointerException npe) {
          System.out.println("There is no contact in this list with the name " + query);
       }
@@ -84,8 +108,17 @@ public class ContactList {
       try {
          Contact contact = searchContactByName(query);
          list.remove(contact);
+         System.out.println(query + "removed");
       } catch (NullPointerException npe) {
          System.out.println("There is no contact by the name of " + query);
       }
+   }
+
+   public void setPhoneNumberFormat(int preference) {
+      phoneNumberFormat = preference;
+   }
+
+   public void setFirstBeforeLast(boolean preference) {
+      firstBeforeLast = (preference != firstBeforeLast);
    }
 }
