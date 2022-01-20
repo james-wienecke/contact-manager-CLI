@@ -51,6 +51,7 @@ public class App {
                     list.setFirstBeforeLast(menu.configFirstBeforeLastName());
                     list.setPhoneNumberFormat(menu.configPhoneNumberFormat());
                     System.out.println("Preferences changed.");
+                    break;
                 case EXIT:
                     // exit program
                     System.out.println("Exiting...");

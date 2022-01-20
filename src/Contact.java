@@ -42,7 +42,7 @@ class Name {
     public Name(String name) throws ArrayIndexOutOfBoundsException {
         String[] names = name.split(" ");
         this.first = names[0].substring(0, 1).toUpperCase(Locale.ROOT) + names[0].substring(1);
-        this.last = names[1].substring(0, 1).toUpperCase(Locale.ROOT) + names[0].substring(1);
+        this.last = names[1].substring(0, 1).toUpperCase(Locale.ROOT) + names[1].substring(1);
     }
 
     public Name(String first, String last) {
@@ -99,13 +99,13 @@ class Phone {
         } else if (num.length() == 11) {
             // 0 111 222 3333
             // 0 123 456 789A
-            country = num.substring(0, 1);
+            country = "00" + num.substring(0, 1);
             area = num.substring(1, 4);
             number = num.substring(4);
         } else if (num.length() == 12) {
             // 00 111 222 3333
             // 01 234 567 89AB
-            country = num.substring(0, 2);
+            country = "0" + num.substring(0, 2);
             area = num.substring(2, 5);
             number = num.substring(5);
         } else if (num.length() == 13) {
@@ -127,6 +127,18 @@ class Phone {
         return getNumberFormatted(0);
     }
 
+    private String getCountryCode() {
+        if (country.substring(0, 1).equalsIgnoreCase("0")) {
+            if (country.substring(1, 2).equalsIgnoreCase("0")) {
+                return country.substring(2, 3);
+            } else {
+                return country.substring(1, 3);
+            }
+        } else {
+            return country;
+        }
+    }
+
     /**
      *
      * @param format 0: E164 format 1: US format 2: ambiguously european format, 3: UK-ish format -1: no format
@@ -135,21 +147,21 @@ class Phone {
     public String getNumberFormatted(int format) {
         switch (format) {
             case E164:
-                return String.format("+%s%s%s", country.substring(1), area, number);
+                return String.format("+%s%s%s", getCountryCode(), area, number);
             case US:
                 if (country.equalsIgnoreCase("001")) {
                     // (111)222-3333
                     return String.format("(%s)%s-%s", area, number.substring(0, 3), number.substring(3));
                 } else {
                     // +00(111)222-3333
-                    return String.format("+%s(%s)%s-%s", country.substring(1), area, number.substring(0, 3), number.substring(3));
+                    return String.format("+%s(%s)%s-%s", getCountryCode(), area, number.substring(0, 3), number.substring(3));
                 }
             case INT:
                 // +00 111.222.3333
-                return String.format("+%s %s.%s.%s", country.substring(1), area, number.substring(0, 3), number.substring(3));
+                return String.format("+%s %s.%s.%s", getCountryCode(), area, number.substring(0, 3), number.substring(3));
             case UK:
                 // 00 11 1222 3333
-                return String.format("%s 0%s %s%s %s", country.substring(1), area.substring(0, 2), area.substring(2), number.substring(0, 3), number.substring(3));
+                return String.format("%s 0%s %s%s %s", getCountryCode(), area.substring(0, 2), area.substring(2), number.substring(0, 3), number.substring(3));
             default:
                 // 0001112223333
                 return String.format("%s%s%s", country, area, number);
