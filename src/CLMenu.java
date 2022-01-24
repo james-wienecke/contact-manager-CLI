@@ -35,7 +35,7 @@ public class CLMenu {
     }
 
     public String searchContactMenu() {
-        return in.getString("Enter the name to search for:");
+        return in.getString("Enter your search terms:");
     }
 
     public boolean configFirstBeforeLastName() {
