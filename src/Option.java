@@ -15,8 +15,6 @@ public enum Option {
         this.stringOption = option;
     }
 
-
-
     public static Option getOptionFromInt(int input) {
         switch (input) {
             case 1:

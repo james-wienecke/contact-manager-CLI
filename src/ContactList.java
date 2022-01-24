@@ -85,21 +85,17 @@ public class ContactList {
    }
 
    public void searchAndPrintContact(String query) {
-      try {
-//         Contact contact = searchContactByName(query);
-         List<Contact> matches = new LinkedList<>();
-         for (Contact contact : list) {
-            Contact match = searchContactAllFields(query, contact);
-            if (match != null) matches.add(match);
+      printContactHeader();
+      boolean anyMatch = false;
+      for (Contact contact : list) {
+         Contact match = searchContactAllFields(query, contact);
+         if (match != null) {
+            printContact(match);
+            anyMatch = true;
          }
-         printContactHeader();
-         for (Contact contact : matches) {
-            printContact(contact);
-         }
-         printContactFooter();
-      } catch (NullPointerException npe) {
-         System.out.println("There is no contact in this list with the name " + query);
       }
+      printContactFooter();
+      if (!anyMatch) System.out.println("There is no contact in this list matching the term \"" + query + "\"");
    }
 
    public Contact searchContactByName(String nameSearch) {
