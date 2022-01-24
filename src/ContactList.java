@@ -5,6 +5,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 
 public class ContactList {
    ArrayList<Contact> list;
@@ -122,7 +123,7 @@ public class ContactList {
 
    public Contact searchContactAllFields(String query, Contact contact) {
       Contact found = null;
-      if (contact.getName().contains(query) ||
+      if (contact.getName().toLowerCase(Locale.ROOT).contains(query.toLowerCase(Locale.ROOT)) ||
          contact.getPhone().contains(query)) {
          found = contact;
       }
