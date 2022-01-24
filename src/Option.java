@@ -1,7 +1,7 @@
 public enum Option {
     VIEW (1, "View contacts."),
     ADD (2, "Add a new contact."),
-    SEARCH (3, "Search a contact by name."),
+    SEARCH (3, "Search for a contact."),
     DELETE (4, "Delete an existing contact."),
     CONFIG (5, "Edit preferences."),
     EXIT (6, "Exit."),
@@ -14,8 +14,6 @@ public enum Option {
         this.number = number;
         this.stringOption = option;
     }
-
-
 
     public static Option getOptionFromInt(int input) {
         switch (input) {

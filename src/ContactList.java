@@ -3,7 +3,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 
 public class ContactList {
    ArrayList<Contact> list;
@@ -78,20 +80,35 @@ public class ContactList {
       System.out.println("└──────────────────────────┴────────────────────┘");
    }
 
-   public void addNewContact(String[] newContact) {
-      Contact contact = new Contact(newContact[0], newContact[1]);
-      list.add(contact);
+   public boolean addNewContact(String[] newContact) {
+      boolean wouldCollide = false;
+      for (Contact contact : list) {
+         Contact nameMatch = searchContactAllFields(newContact[0], contact);
+         Contact phoneMatch = searchContactAllFields(newContact[1], contact);
+         if (nameMatch != null || phoneMatch != null) {
+            wouldCollide = true;
+            break;
+         }
+      }
+      if (!wouldCollide) {
+         Contact contact = new Contact(newContact[0], newContact[1]);
+         list.add(contact);
+      }
+      return wouldCollide;
    }
 
    public void searchAndPrintContact(String query) {
-      try {
-         Contact contact = searchContactByName(query);
-         printContactHeader();
-         printContact(contact);
-         printContactFooter();
-      } catch (NullPointerException npe) {
-         System.out.println("There is no contact in this list with the name " + query);
+      printContactHeader();
+      boolean anyMatch = false;
+      for (Contact contact : list) {
+         Contact match = searchContactAllFields(query, contact);
+         if (match != null) {
+            printContact(match);
+            anyMatch = true;
+         }
       }
+      printContactFooter();
+      if (!anyMatch) System.out.println("There is no contact in this list matching the term \"" + query + "\"");
    }
 
    public Contact searchContactByName(String nameSearch) {
@@ -100,6 +117,15 @@ public class ContactList {
          if (contact.getName().equalsIgnoreCase(nameSearch)) {
             found = contact;
          }
+      }
+      return found;
+   }
+
+   public Contact searchContactAllFields(String query, Contact contact) {
+      Contact found = null;
+      if (contact.getName().toLowerCase(Locale.ROOT).contains(query.toLowerCase(Locale.ROOT)) ||
+         contact.getPhone().contains(query)) {
+         found = contact;
       }
       return found;
    }
