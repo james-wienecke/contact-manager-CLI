@@ -3,6 +3,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class ContactList {
@@ -85,9 +86,16 @@ public class ContactList {
 
    public void searchAndPrintContact(String query) {
       try {
-         Contact contact = searchContactByName(query);
+//         Contact contact = searchContactByName(query);
+         List<Contact> matches = new LinkedList<>();
+         for (Contact contact : list) {
+            Contact match = searchContactAllFields(query, contact);
+            if (match != null) matches.add(match);
+         }
          printContactHeader();
-         printContact(contact);
+         for (Contact contact : matches) {
+            printContact(contact);
+         }
          printContactFooter();
       } catch (NullPointerException npe) {
          System.out.println("There is no contact in this list with the name " + query);
@@ -100,6 +108,15 @@ public class ContactList {
          if (contact.getName().equalsIgnoreCase(nameSearch)) {
             found = contact;
          }
+      }
+      return found;
+   }
+
+   public Contact searchContactAllFields(String query, Contact contact) {
+      Contact found = null;
+      if (contact.getName().contains(query) ||
+         contact.getPhone().contains(query)) {
+         found = contact;
       }
       return found;
    }
