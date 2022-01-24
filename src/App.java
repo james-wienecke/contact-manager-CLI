@@ -17,7 +17,7 @@ public class App {
     public static void runCommandLine(ContactList list) {
         Input in = new Input();
         CLMenu menu = new CLMenu(in);
-        Option option = Option.UNKNOWN;
+        Option option;
         do {
             option = menu.mainMenu();
             switch (option) {

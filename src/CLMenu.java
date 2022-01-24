@@ -1,5 +1,5 @@
 public class CLMenu {
-    private Input in;
+    private final Input in;
 
     CLMenu() {
         this(new Input());
