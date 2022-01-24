@@ -79,9 +79,21 @@ public class ContactList {
       System.out.println("└──────────────────────────┴────────────────────┘");
    }
 
-   public void addNewContact(String[] newContact) {
-      Contact contact = new Contact(newContact[0], newContact[1]);
-      list.add(contact);
+   public boolean addNewContact(String[] newContact) {
+      boolean wouldCollide = false;
+      for (Contact contact : list) {
+         Contact nameMatch = searchContactAllFields(newContact[0], contact);
+         Contact phoneMatch = searchContactAllFields(newContact[1], contact);
+         if (nameMatch != null || phoneMatch != null) {
+            wouldCollide = true;
+            break;
+         }
+      }
+      if (!wouldCollide) {
+         Contact contact = new Contact(newContact[0], newContact[1]);
+         list.add(contact);
+      }
+      return wouldCollide;
    }
 
    public void searchAndPrintContact(String query) {

@@ -30,8 +30,12 @@ public class App {
                     // add a contact
                     System.out.println("Add contact");
                     try {
-                        list.addNewContact(menu.addContactMenu());
-                        System.out.println("You successfully added a contact.");
+                        boolean wouldCollide = list.addNewContact(menu.addContactMenu());
+                        if (wouldCollide) {
+                            System.out.println("Contact name or phone number already exists, stopping addition.");
+                        } else {
+                            System.out.println("You successfully added a contact.");
+                        }
                     } catch (NumberFormatException numErr) {
                         System.out.println("Invalid phone number. Try again.");
                     }
